@@ -1,0 +1,259 @@
+{
+  "meta": {
+    "uni": "abc1234",
+    "name": "Alex Example",
+    "github": "alexexample",
+    "date": "2026-10-10",
+    "title": "Midterm: From minimal_full_server to Production Engines",
+    "model": "TinyLlama/TinyLlama-1.1B-Chat-v1.0",
+    "device": "NVIDIA A10G · CUDA 12.x",
+    "repo_url": "https://github.com/org/private-midterm-repo"
+  },
+  "source": {
+    "harness": "code/run_midterm_sweep.py (validated with code/export_midterm_results.py)",
+    "json_file": "report/src/data/abc1234-midterm-results.json",
+    "started": "2026-10-08T14:00:00-04:00",
+    "finished": "2026-10-09T18:30:00-04:00",
+    "workload": {
+      "prompt_token_targets": [128, 512, 2048],
+      "max_new_tokens": 64,
+      "concurrency_grid": [1, 4],
+      "reps_per_cell": 3,
+      "warmup_runs": 1,
+      "notes": "Fixed chat template; same seed prompts across systems where the engine allows."
+    }
+  },
+  "systems": [
+    {
+      "id": "minimal_b1",
+      "label": "minimal_full_server (batch=1)",
+      "family": "baseline",
+      "description": "Week 2 five-step server: one request, no continuous batching, HF DynamicCache on device.",
+      "novelty": "Contiguous KV tensor per request — no paged blocks, no iteration-level batching (Week 2 reference)."
+    },
+    {
+      "id": "vllm_paged",
+      "label": "vLLM PagedAttention",
+      "family": "vllm",
+      "description": "pip install vllm; vllm serve + OpenAI-compatible or custom concurrent client.",
+      "novelty": "PagedAttention KV blocks + block table (Kwon et al.) — KV bytes vs logical seq_len; colocated production engine from Week 4.",
+      "repo": "https://github.com/vllm-project/vllm"
+    },
+    {
+      "id": "llama_cpp",
+      "label": "llama.cpp llama-server",
+      "family": "llama.cpp",
+      "description": "llama-server -m tinyllama-1.1b-chat-f16.gguf -c 8192 -np 4 (F16 GGUF, same weights as baseline); OpenAI-compatible client, 4 parallel slots.",
+      "novelty": "C++/GGUF runtime with slot-based continuous batching (-np); KV cache is preallocated per slot at server start instead of grown per request.",
+      "repo": "https://github.com/ggml-org/llama.cpp"
+    }
+  ],
+  "runs": [
+    {
+      "system_id": "minimal_b1",
+      "prompt_tokens": 128,
+      "concurrency": 1,
+      "rep": 0,
+      "ttft_ms": 118.4,
+      "tbt_ms_p50": 14.2,
+      "tbt_ms_mean": 14.8,
+      "kv_bytes": 4325376,
+      "kv_seq_len": 192,
+      "new_tokens": 64
+    },
+    {
+      "system_id": "minimal_b1",
+      "prompt_tokens": 512,
+      "concurrency": 1,
+      "rep": 0,
+      "ttft_ms": 312.6,
+      "tbt_ms_p50": 14.5,
+      "tbt_ms_mean": 15.1,
+      "kv_bytes": 12976128,
+      "kv_seq_len": 576,
+      "new_tokens": 64
+    },
+    {
+      "system_id": "minimal_b1",
+      "prompt_tokens": 2048,
+      "concurrency": 1,
+      "rep": 0,
+      "ttft_ms": 1180.0,
+      "tbt_ms_p50": 15.0,
+      "tbt_ms_mean": 15.6,
+      "kv_bytes": 47579136,
+      "kv_seq_len": 2112,
+      "new_tokens": 64
+    },
+    {
+      "system_id": "vllm_paged",
+      "prompt_tokens": 128,
+      "concurrency": 1,
+      "rep": 0,
+      "ttft_ms": 95.1,
+      "tbt_ms_p50": 11.8,
+      "tbt_ms_mean": 12.2,
+      "kv_bytes": 4325376,
+      "kv_seq_len": 192,
+      "new_tokens": 64
+    },
+    {
+      "system_id": "vllm_paged",
+      "prompt_tokens": 512,
+      "concurrency": 1,
+      "rep": 0,
+      "ttft_ms": 280.4,
+      "tbt_ms_p50": 12.0,
+      "tbt_ms_mean": 12.4,
+      "kv_bytes": 12976128,
+      "kv_seq_len": 576,
+      "new_tokens": 64
+    },
+    {
+      "system_id": "vllm_paged",
+      "prompt_tokens": 2048,
+      "concurrency": 1,
+      "rep": 0,
+      "ttft_ms": 1020.5,
+      "tbt_ms_p50": 12.3,
+      "tbt_ms_mean": 12.9,
+      "kv_bytes": 47579136,
+      "kv_seq_len": 2112,
+      "new_tokens": 64
+    },
+    {
+      "system_id": "llama_cpp",
+      "prompt_tokens": 128,
+      "concurrency": 1,
+      "rep": 0,
+      "ttft_ms": 71.3,
+      "tbt_ms_p50": 7.4,
+      "tbt_ms_mean": 7.7,
+      "kv_bytes": 4325376,
+      "kv_seq_len": 192,
+      "new_tokens": 64
+    },
+    {
+      "system_id": "llama_cpp",
+      "prompt_tokens": 512,
+      "concurrency": 1,
+      "rep": 0,
+      "ttft_ms": 188.9,
+      "tbt_ms_p50": 7.6,
+      "tbt_ms_mean": 7.9,
+      "kv_bytes": 12976128,
+      "kv_seq_len": 576,
+      "new_tokens": 64
+    },
+    {
+      "system_id": "llama_cpp",
+      "prompt_tokens": 2048,
+      "concurrency": 1,
+      "rep": 0,
+      "ttft_ms": 731.2,
+      "tbt_ms_p50": 8.1,
+      "tbt_ms_mean": 8.5,
+      "kv_bytes": 47579136,
+      "kv_seq_len": 2112,
+      "new_tokens": 64
+    },
+    {
+      "system_id": "vllm_paged",
+      "prompt_tokens": 512,
+      "concurrency": 4,
+      "rep": 0,
+      "ttft_ms": 301.5,
+      "ttft_ms_samples": [182, 198, 405, 892],
+      "tbt_ms_p50": 17.15,
+      "tbt_ms_mean": 23.93,
+      "tbt_ms_samples": [13.8, 15.1, 19.2, 47.6],
+      "kv_bytes_samples": [12976128, 12976128, 12976128, 12976128],
+      "kv_bytes": 12976128,
+      "kv_seq_len": 576,
+      "new_tokens": 64
+    },
+    {
+      "system_id": "vllm_paged",
+      "prompt_tokens": 512,
+      "concurrency": 4,
+      "rep": 1,
+      "ttft_ms": 295.0,
+      "ttft_ms_samples": [175, 210, 380, 1610],
+      "tbt_ms_p50": 17.35,
+      "tbt_ms_mean": 22.7,
+      "tbt_ms_samples": [14.0, 16.2, 18.5, 42.1],
+      "kv_bytes_samples": [12976128, 12976128, 12976128, 12976128],
+      "kv_bytes": 12976128,
+      "kv_seq_len": 576,
+      "new_tokens": 64,
+      "notes": "Client 4 arrived while the KV block pool was full and was preempted once, giving a TTFT straggler."
+    },
+    {
+      "system_id": "llama_cpp",
+      "prompt_tokens": 512,
+      "concurrency": 4,
+      "rep": 0,
+      "ttft_ms": 252.5,
+      "ttft_ms_samples": [158, 171, 334, 702],
+      "tbt_ms_p50": 10.5,
+      "tbt_ms_mean": 12.12,
+      "tbt_ms_samples": [9.1, 9.8, 11.2, 18.4],
+      "kv_bytes_samples": [12976128, 12976128, 12976128, 12976128],
+      "kv_bytes": 12976128,
+      "kv_seq_len": 576,
+      "new_tokens": 64
+    },
+    {
+      "system_id": "minimal_b1",
+      "prompt_tokens": 512,
+      "concurrency": 4,
+      "rep": 0,
+      "ttft_ms": 2164.0,
+      "ttft_ms_samples": [314, 1547, 2781, 4016],
+      "tbt_ms_p50": 14.65,
+      "tbt_ms_mean": 14.68,
+      "tbt_ms_samples": [14.2, 14.5, 14.8, 15.2],
+      "kv_bytes_samples": [12976128, 12976128, 12976128, 12976128],
+      "kv_bytes": 12976128,
+      "kv_seq_len": 576,
+      "new_tokens": 64,
+      "notes": "Four clients fired together; no batching. Each client waits for every earlier request's full prefill + 64-token decode (~1.23 s each), so TTFT is a staircase."
+    }
+  ],
+  "takeaways": [
+    "TTFT tracks prefill + scheduling + any KV fetch; it separates from decode once batching kicks in.",
+    "At N>1, TTFT and TBT are distributions — report samples or boxplots, not only cell means.",
+    "Report p95/max (or box whiskers) alongside medians; do not use aggregate tok/s alone.",
+    "KV bytes grow ~linearly with seq_len; PagedAttention changes allocation, not the information-theoretic footprint at full context."
+  ],
+  "summary": "Replace with your results: how each system's novelty shows up in TTFT, TBT, and KV bytes (line chart at N=1; boxplot with concurrency toggles). State hardware, model, and harness.",
+  "plot": {
+    "title": "Median TTFT vs prompt length (concurrency = 1)",
+    "metric": "ttft_ms",
+    "x_field": "prompt_tokens",
+    "series_field": "system_id",
+    "aggregate": "median",
+    "filter": {
+      "concurrency": 1
+    },
+    "y_label": "TTFT (ms)",
+    "x_label": "Prompt tokens"
+  },
+  "boxplot": {
+    "title": "TTFT distribution per client (512-token prompt)",
+    "subtitle": "Each box pools one sample per concurrent client across repetitions (see README for ttft_ms_samples / tbt_ms_samples).",
+    "metric": "ttft_ms",
+    "samples_field": "ttft_ms_samples",
+    "group_field": "system_id",
+    "default_concurrency": 4,
+    "filter": {
+      "prompt_tokens": 512
+    },
+    "y_label": "TTFT (ms)",
+    "metrics": [
+      { "key": "ttft_ms", "label": "TTFT", "unit": "ms" },
+      { "key": "tbt_ms_p50", "label": "TBT", "unit": "ms" },
+      { "key": "kv_bytes", "label": "KV bytes", "unit": "" }
+    ]
+  }
+}
