@@ -4,6 +4,6 @@
  *
  * The sample file ships with the template; replace UNI with your Columbia UNI.
  */
-import DATA from './data/midterm-results.sample.json'
+import DATA from './data/srk2211-midterm-results.json'
 
 export default DATA

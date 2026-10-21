@@ -440,6 +440,19 @@
   margin: 0;
 }
 
+.discussion {
+  max-width: 72ch;
+}
+
+.discussion h3 {
+  margin: 20px 0 8px;
+  font-size: 18px;
+}
+
+.discussion p {
+  margin: 0 0 12px;
+}
+
 .report-footer {
   margin-top: 32px;
   padding-top: 16px;

@@ -1,0 +1,436 @@
+{
+  "system_id": "llama_cpp",
+  "model": "TinyLlama/TinyLlama-1.1B-Chat-v1.0",
+  "device": "cuda via llama_cpp server",
+  "started": "2026-10-20T22:04:26-04:00",
+  "finished": "2026-10-20T22:05:16-04:00",
+  "workload": {
+    "source": "code/workload/prompts.json",
+    "max_new_tokens": 64,
+    "concurrency_grid": [
+      1,
+      4
+    ],
+    "reps_per_cell": 3,
+    "warmup_runs_per_cell": 1
+  },
+  "runs": [
+    {
+      "system_id": "llama_cpp",
+      "prompt_tokens": 131,
+      "concurrency": 1,
+      "rep": 0,
+      "ttft_ms": 37.747,
+      "tbt_ms_p50": 21.84,
+      "tbt_ms_mean": 21.889,
+      "kv_bytes": 4392960,
+      "kv_seq_len": 195,
+      "new_tokens": 64,
+      "prompt_id": "syn_128",
+      "target_prompt_tokens": 128
+    },
+    {
+      "system_id": "llama_cpp",
+      "prompt_tokens": 131,
+      "concurrency": 1,
+      "rep": 1,
+      "ttft_ms": 46.896,
+      "tbt_ms_p50": 21.381,
+      "tbt_ms_mean": 21.549,
+      "kv_bytes": 4392960,
+      "kv_seq_len": 195,
+      "new_tokens": 64,
+      "prompt_id": "syn_128",
+      "target_prompt_tokens": 128
+    },
+    {
+      "system_id": "llama_cpp",
+      "prompt_tokens": 131,
+      "concurrency": 1,
+      "rep": 2,
+      "ttft_ms": 40.997,
+      "tbt_ms_p50": 21.291,
+      "tbt_ms_mean": 21.412,
+      "kv_bytes": 4392960,
+      "kv_seq_len": 195,
+      "new_tokens": 64,
+      "prompt_id": "syn_128",
+      "target_prompt_tokens": 128
+    },
+    {
+      "system_id": "llama_cpp",
+      "prompt_tokens": 131,
+      "concurrency": 4,
+      "rep": 0,
+      "ttft_ms": 76.66,
+      "tbt_ms_p50": 33.428,
+      "tbt_ms_mean": 33.545,
+      "kv_bytes": 4392960,
+      "kv_seq_len": 195,
+      "new_tokens": 64,
+      "ttft_ms_samples": [
+        75.308,
+        36.309,
+        79.683,
+        78.011
+      ],
+      "tbt_ms_samples": [
+        33.531,
+        33.386,
+        33.478,
+        33.148
+      ],
+      "kv_bytes_samples": [
+        4392960,
+        4392960,
+        4392960,
+        4392960
+      ],
+      "prompt_id": "syn_128",
+      "target_prompt_tokens": 128
+    },
+    {
+      "system_id": "llama_cpp",
+      "prompt_tokens": 131,
+      "concurrency": 4,
+      "rep": 1,
+      "ttft_ms": 70.992,
+      "tbt_ms_p50": 32.765,
+      "tbt_ms_mean": 32.957,
+      "kv_bytes": 4392960,
+      "kv_seq_len": 195,
+      "new_tokens": 64,
+      "ttft_ms_samples": [
+        70.113,
+        72.938,
+        71.871,
+        30.997
+      ],
+      "tbt_ms_samples": [
+        32.735,
+        32.773,
+        32.776,
+        32.634
+      ],
+      "kv_bytes_samples": [
+        4392960,
+        4392960,
+        4392960,
+        4392960
+      ],
+      "prompt_id": "syn_128",
+      "target_prompt_tokens": 128
+    },
+    {
+      "system_id": "llama_cpp",
+      "prompt_tokens": 131,
+      "concurrency": 4,
+      "rep": 2,
+      "ttft_ms": 39.382,
+      "tbt_ms_p50": 32.884,
+      "tbt_ms_mean": 33.071,
+      "kv_bytes": 4392960,
+      "kv_seq_len": 195,
+      "new_tokens": 64,
+      "ttft_ms_samples": [
+        37.686,
+        38.747,
+        40.018,
+        72.389
+      ],
+      "tbt_ms_samples": [
+        32.818,
+        33.033,
+        32.941,
+        32.827
+      ],
+      "kv_bytes_samples": [
+        4392960,
+        4392960,
+        4392960,
+        4392960
+      ],
+      "prompt_id": "syn_128",
+      "target_prompt_tokens": 128
+    },
+    {
+      "system_id": "llama_cpp",
+      "prompt_tokens": 522,
+      "concurrency": 1,
+      "rep": 0,
+      "ttft_ms": 29.273,
+      "tbt_ms_p50": 21.518,
+      "tbt_ms_mean": 21.629,
+      "kv_bytes": 13201408,
+      "kv_seq_len": 586,
+      "new_tokens": 64,
+      "prompt_id": "syn_512",
+      "target_prompt_tokens": 512
+    },
+    {
+      "system_id": "llama_cpp",
+      "prompt_tokens": 522,
+      "concurrency": 1,
+      "rep": 1,
+      "ttft_ms": 49.937,
+      "tbt_ms_p50": 22.852,
+      "tbt_ms_mean": 22.908,
+      "kv_bytes": 13201408,
+      "kv_seq_len": 586,
+      "new_tokens": 64,
+      "prompt_id": "syn_512",
+      "target_prompt_tokens": 512
+    },
+    {
+      "system_id": "llama_cpp",
+      "prompt_tokens": 522,
+      "concurrency": 1,
+      "rep": 2,
+      "ttft_ms": 40.284,
+      "tbt_ms_p50": 22.236,
+      "tbt_ms_mean": 22.509,
+      "kv_bytes": 13201408,
+      "kv_seq_len": 586,
+      "new_tokens": 64,
+      "prompt_id": "syn_512",
+      "target_prompt_tokens": 512
+    },
+    {
+      "system_id": "llama_cpp",
+      "prompt_tokens": 522,
+      "concurrency": 4,
+      "rep": 0,
+      "ttft_ms": 57.427,
+      "tbt_ms_p50": 34.239,
+      "tbt_ms_mean": 35.137,
+      "kv_bytes": 13201408,
+      "kv_seq_len": 586,
+      "new_tokens": 64,
+      "ttft_ms_samples": [
+        58.052,
+        57.88,
+        56.477,
+        56.975
+      ],
+      "tbt_ms_samples": [
+        34.31,
+        34.162,
+        33.999,
+        34.473
+      ],
+      "kv_bytes_samples": [
+        13201408,
+        13201408,
+        13201408,
+        13201408
+      ],
+      "prompt_id": "syn_512",
+      "target_prompt_tokens": 512
+    },
+    {
+      "system_id": "llama_cpp",
+      "prompt_tokens": 522,
+      "concurrency": 4,
+      "rep": 1,
+      "ttft_ms": 76.183,
+      "tbt_ms_p50": 32.863,
+      "tbt_ms_mean": 33.438,
+      "kv_bytes": 13201408,
+      "kv_seq_len": 586,
+      "new_tokens": 64,
+      "ttft_ms_samples": [
+        79.028,
+        35.602,
+        77.316,
+        75.051
+      ],
+      "tbt_ms_samples": [
+        33.077,
+        32.619,
+        32.744,
+        32.778
+      ],
+      "kv_bytes_samples": [
+        13201408,
+        13201408,
+        13201408,
+        13201408
+      ],
+      "prompt_id": "syn_512",
+      "target_prompt_tokens": 512
+    },
+    {
+      "system_id": "llama_cpp",
+      "prompt_tokens": 522,
+      "concurrency": 4,
+      "rep": 2,
+      "ttft_ms": 71.63,
+      "tbt_ms_p50": 33.476,
+      "tbt_ms_mean": 33.67,
+      "kv_bytes": 13201408,
+      "kv_seq_len": 586,
+      "new_tokens": 64,
+      "ttft_ms_samples": [
+        71.016,
+        73.113,
+        31.715,
+        72.244
+      ],
+      "tbt_ms_samples": [
+        33.414,
+        33.553,
+        33.581,
+        33.255
+      ],
+      "kv_bytes_samples": [
+        13201408,
+        13201408,
+        13201408,
+        13201408
+      ],
+      "prompt_id": "syn_512",
+      "target_prompt_tokens": 512
+    },
+    {
+      "system_id": "llama_cpp",
+      "prompt_tokens": 1956,
+      "concurrency": 1,
+      "rep": 0,
+      "ttft_ms": 33.785,
+      "tbt_ms_p50": 23.03,
+      "tbt_ms_mean": 23.225,
+      "kv_bytes": 45506560,
+      "kv_seq_len": 2020,
+      "new_tokens": 64,
+      "prompt_id": "syn_2048",
+      "target_prompt_tokens": 2048
+    },
+    {
+      "system_id": "llama_cpp",
+      "prompt_tokens": 1956,
+      "concurrency": 1,
+      "rep": 1,
+      "ttft_ms": 60.181,
+      "tbt_ms_p50": 24.412,
+      "tbt_ms_mean": 24.569,
+      "kv_bytes": 45506560,
+      "kv_seq_len": 2020,
+      "new_tokens": 64,
+      "prompt_id": "syn_2048",
+      "target_prompt_tokens": 2048
+    },
+    {
+      "system_id": "llama_cpp",
+      "prompt_tokens": 1956,
+      "concurrency": 1,
+      "rep": 2,
+      "ttft_ms": 34.15,
+      "tbt_ms_p50": 25.277,
+      "tbt_ms_mean": 25.445,
+      "kv_bytes": 45506560,
+      "kv_seq_len": 2020,
+      "new_tokens": 64,
+      "prompt_id": "syn_2048",
+      "target_prompt_tokens": 2048
+    },
+    {
+      "system_id": "llama_cpp",
+      "prompt_tokens": 1956,
+      "concurrency": 4,
+      "rep": 0,
+      "ttft_ms": 67.253,
+      "tbt_ms_p50": 36.119,
+      "tbt_ms_mean": 36.465,
+      "kv_bytes": 45506560,
+      "kv_seq_len": 2020,
+      "new_tokens": 64,
+      "ttft_ms_samples": [
+        67.745,
+        66.317,
+        67.995,
+        66.762
+      ],
+      "tbt_ms_samples": [
+        36.132,
+        36.19,
+        35.824,
+        36.107
+      ],
+      "kv_bytes_samples": [
+        45506560,
+        45506560,
+        45506560,
+        45506560
+      ],
+      "prompt_id": "syn_2048",
+      "target_prompt_tokens": 2048
+    },
+    {
+      "system_id": "llama_cpp",
+      "prompt_tokens": 1956,
+      "concurrency": 4,
+      "rep": 1,
+      "ttft_ms": 75.485,
+      "tbt_ms_p50": 34.083,
+      "tbt_ms_mean": 34.245,
+      "kv_bytes": 45506560,
+      "kv_seq_len": 2020,
+      "new_tokens": 64,
+      "ttft_ms_samples": [
+        36.041,
+        75.194,
+        76.76,
+        75.777
+      ],
+      "tbt_ms_samples": [
+        34.02,
+        34.201,
+        34.133,
+        34.023
+      ],
+      "kv_bytes_samples": [
+        45506560,
+        45506560,
+        45506560,
+        45506560
+      ],
+      "prompt_id": "syn_2048",
+      "target_prompt_tokens": 2048
+    },
+    {
+      "system_id": "llama_cpp",
+      "prompt_tokens": 1956,
+      "concurrency": 4,
+      "rep": 2,
+      "ttft_ms": 73.491,
+      "tbt_ms_p50": 33.564,
+      "tbt_ms_mean": 34.011,
+      "kv_bytes": 45506560,
+      "kv_seq_len": 2020,
+      "new_tokens": 64,
+      "ttft_ms_samples": [
+        74.179,
+        35.2,
+        75.724,
+        72.803
+      ],
+      "tbt_ms_samples": [
+        33.522,
+        33.56,
+        33.584,
+        33.607
+      ],
+      "kv_bytes_samples": [
+        45506560,
+        45506560,
+        45506560,
+        45506560
+      ],
+      "prompt_id": "syn_2048",
+      "target_prompt_tokens": 2048
+    }
+  ],
+  "endpoint": "http://127.0.0.1:8081",
+  "served_model": "tinyllama",
+  "kv_method": "dense per-request FP16 estimate from TinyLlama config"
+}

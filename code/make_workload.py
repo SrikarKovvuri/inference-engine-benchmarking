@@ -116,7 +116,10 @@ def main() -> None:
     if tokenizer.pad_token is None:
         tokenizer.pad_token = tokenizer.eos_token
 
-    slack = MAX_NEW_TOKENS + 16
+    # llama.cpp's embedded GGUF chat template adds more tokens than the HF
+    # tokenizer. Reserve an extra 64-token cross-engine margin so every engine
+    # can still generate the same MAX_NEW_TOKENS at the long prompt target.
+    slack = MAX_NEW_TOKENS + 64
     prompts = []
     for label in PROMPT_TARGETS:
         build = label if label <= 512 else min(label, 2048 - slack)

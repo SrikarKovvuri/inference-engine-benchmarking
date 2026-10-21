@@ -113,14 +113,93 @@ function App() {
         </Hideable>
 
         <Hideable title="Discussion" sectionId="discussion" defaultOpen={false}>
-          <p className="placeholder">
-            Replace this paragraph in <code>src/App.jsx</code> (or add a{' '}
-            <code>discussion</code> field to your JSON and map it here). Tie
-            each system’s <code>novelty</code> field to your plots (Orca
-            batching tails, vLLM paging, llama.cpp runtime, prefix reuse, PD if
-            you ran it). Explain when TTFT vs TBT vs KV bytes tell different
-            stories.
-          </p>
+          <div className="discussion">
+            <p>
+              The line chart and boxplot measure the same TinyLlama 1.1B math
+              under three different schedulers. TTFT is where those designs show
+              up. TBT and KV bytes tell a quieter story: decode stays roughly
+              stable per engine, and the dense KV footprint grows linearly with
+              sequence length on all three systems.
+            </p>
+
+            <h3>Baseline: one worker, a FIFO queue, no batching</h3>
+            <p>
+              <code>minimal_full_server</code> is still the Week 2 five-step
+              loop. Concurrent clients are just threads that arrive together and
+              sit in a queue. The worker finishes an entire request — prefill
+              plus all 64 decode steps — before it dequeues the next one. There
+              is no iteration-level batching and the KV cache is a contiguous
+              Hugging Face <code>DynamicCache</code>.
+            </p>
+            <p>
+              That novelty is a staircase, not a faster GPU kernel. At
+              concurrency 1 and 512 tokens, median TTFT is 449 ms and TBT p50 is
+              about 51 ms. At concurrency 4 the same TBT stays near 50 ms, but
+              median TTFT jumps to 6280 ms and the slowest client in the boxplot
+              waits 12044 ms. The first client looks like the N=1 run; each later
+              client pays for every earlier request&apos;s full prefill and
+              decode. The boxplot whiskers are the point: the tail is the design.
+            </p>
+
+            <h3>vLLM: PagedAttention plus continuous batching</h3>
+            <p>
+              vLLM keeps the same FP16 TinyLlama weights but changes memory
+              layout and admission. PagedAttention stores KV in blocks and maps
+              them with a block table, so a request does not need one growing
+              contiguous tensor. That reduces fragmentation and wasted reserved
+              space, which is what lets the engine keep more live sequences on
+              an 8 GB GPU. It does not shrink the information in a full cache:
+              our KV-bytes series uses the same dense GQA formula for every
+              engine, and baseline and vLLM match at 4.3 / 13.0 / 44.7 MB for
+              192 / 576 / 1984 tokens. Paging changes allocation, not the
+              logical footprint at the end of the run.
+            </p>
+            <p>
+              Continuous batching is the latency result. A new request does not
+              wait for an in-flight decode to finish; it can join the next
+              iteration after its own prefill. At N=4 and 512 tokens, vLLM&apos;s
+              median TTFT is 1562 ms and the worst client sample is 1638 ms —
+              about 4× the N=1 median of 412 ms, not the baseline&apos;s 14×
+              jump to 12 s. TBT stays near the single-user line (~33–36 ms)
+              because decode steps are shared. The boxplot is tight compared
+              with the baseline whiskers: the remaining TTFT spread is shared
+              prefill and scheduling, not a serialized queue.
+            </p>
+
+            <h3>llama.cpp: C++/GGUF runtime, slots, and a Q8 confounder</h3>
+            <p>
+              llama.cpp is a different runtime, not just a different scheduler.
+              It serves a Q8_0 GGUF through a C++ CUDA <code>llama-server</code>
+              with four parallel slots and an 8192-token shared KV pool (so each
+              of four clients can hold a 2048-token context). Slot-based
+              continuous batching is why N=4 does not collapse: 512-token median
+              TTFT is 72 ms and the worst client sample is 79 ms.
+            </p>
+            <p>
+              The line chart looks almost flat because those numbers are not an
+              FP16 apples-to-apples comparison. Q8 cuts weight bandwidth versus
+              the Hugging Face FP16 models used by baseline and vLLM. After a
+              same-prompt warmup, long-context N=1 TTFT stays 34–60 ms versus
+              1627 / 1393 ms on the FP16 engines, which is consistent with
+              prefix reuse in addition to the faster runtime. The right reading
+              is: the C++ server plus slot batching keeps concurrency cheap, and
+              quantization / cache reuse explain most of the absolute gap. TBT
+              still rises from ~22 ms at N=1 to ~33 ms at N=4, so the four slots
+              do share the GPU — they just do not queue whole requests the way
+              the baseline does.
+            </p>
+
+            <h3>What the two figures disagree on</h3>
+            <p>
+              The N=1 line chart says all three engines get slower as prompts
+              get longer, which is prefill. The N=4 boxplot says the baseline is
+              a different system: its tail is queue delay, vLLM&apos;s tail is
+              shared-batch delay, and llama.cpp&apos;s box barely moves. KV
+              bytes do not separate the engines because we reported the dense
+              formula, not vLLM&apos;s paged allocator. The scheduling novelty
+              lives in TTFT tails, not in tok/s or in the KV line.
+            </p>
+          </div>
         </Hideable>
 
         <Hideable title="Raw run count" sectionId="raw" defaultOpen={false}>

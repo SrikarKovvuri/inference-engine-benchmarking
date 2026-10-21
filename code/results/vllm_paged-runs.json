@@ -1,0 +1,436 @@
+{
+  "system_id": "vllm_paged",
+  "model": "TinyLlama/TinyLlama-1.1B-Chat-v1.0",
+  "device": "cuda via vllm_paged server",
+  "started": "2026-10-20T21:55:30-04:00",
+  "finished": "2026-10-20T21:57:10-04:00",
+  "workload": {
+    "source": "code/workload/prompts.json",
+    "max_new_tokens": 64,
+    "concurrency_grid": [
+      1,
+      4
+    ],
+    "reps_per_cell": 3,
+    "warmup_runs_per_cell": 1
+  },
+  "runs": [
+    {
+      "system_id": "vllm_paged",
+      "prompt_tokens": 128,
+      "concurrency": 1,
+      "rep": 0,
+      "ttft_ms": 160.53,
+      "tbt_ms_p50": 38.873,
+      "tbt_ms_mean": 40.485,
+      "kv_bytes": 4325376,
+      "kv_seq_len": 192,
+      "new_tokens": 64,
+      "prompt_id": "syn_128",
+      "target_prompt_tokens": 128
+    },
+    {
+      "system_id": "vllm_paged",
+      "prompt_tokens": 128,
+      "concurrency": 1,
+      "rep": 1,
+      "ttft_ms": 144.533,
+      "tbt_ms_p50": 39.919,
+      "tbt_ms_mean": 39.825,
+      "kv_bytes": 4325376,
+      "kv_seq_len": 192,
+      "new_tokens": 64,
+      "prompt_id": "syn_128",
+      "target_prompt_tokens": 128
+    },
+    {
+      "system_id": "vllm_paged",
+      "prompt_tokens": 128,
+      "concurrency": 1,
+      "rep": 2,
+      "ttft_ms": 133.447,
+      "tbt_ms_p50": 38.851,
+      "tbt_ms_mean": 38.735,
+      "kv_bytes": 4325376,
+      "kv_seq_len": 192,
+      "new_tokens": 64,
+      "prompt_id": "syn_128",
+      "target_prompt_tokens": 128
+    },
+    {
+      "system_id": "vllm_paged",
+      "prompt_tokens": 128,
+      "concurrency": 4,
+      "rep": 0,
+      "ttft_ms": 474.572,
+      "tbt_ms_p50": 30.933,
+      "tbt_ms_mean": 30.951,
+      "kv_bytes": 4325376,
+      "kv_seq_len": 192,
+      "new_tokens": 64,
+      "ttft_ms_samples": [
+        477.138,
+        473.969,
+        475.175,
+        471.337
+      ],
+      "tbt_ms_samples": [
+        30.886,
+        30.951,
+        30.916,
+        30.87
+      ],
+      "kv_bytes_samples": [
+        4325376,
+        4325376,
+        4325376,
+        4325376
+      ],
+      "prompt_id": "syn_128",
+      "target_prompt_tokens": 128
+    },
+    {
+      "system_id": "vllm_paged",
+      "prompt_tokens": 128,
+      "concurrency": 4,
+      "rep": 1,
+      "ttft_ms": 454.528,
+      "tbt_ms_p50": 30.716,
+      "tbt_ms_mean": 32.304,
+      "kv_bytes": 4325376,
+      "kv_seq_len": 192,
+      "new_tokens": 64,
+      "ttft_ms_samples": [
+        453.859,
+        455.891,
+        146.573,
+        455.197
+      ],
+      "tbt_ms_samples": [
+        30.749,
+        30.661,
+        30.683,
+        30.485
+      ],
+      "kv_bytes_samples": [
+        4325376,
+        4325376,
+        4325376,
+        4325376
+      ],
+      "prompt_id": "syn_128",
+      "target_prompt_tokens": 128
+    },
+    {
+      "system_id": "vllm_paged",
+      "prompt_tokens": 128,
+      "concurrency": 4,
+      "rep": 2,
+      "ttft_ms": 382.443,
+      "tbt_ms_p50": 31.991,
+      "tbt_ms_mean": 34.324,
+      "kv_bytes": 4325376,
+      "kv_seq_len": 192,
+      "new_tokens": 64,
+      "ttft_ms_samples": [
+        256.827,
+        254.039,
+        508.06,
+        509.942
+      ],
+      "tbt_ms_samples": [
+        31.827,
+        32.079,
+        32.045,
+        31.973
+      ],
+      "kv_bytes_samples": [
+        4325376,
+        4325376,
+        4325376,
+        4325376
+      ],
+      "prompt_id": "syn_128",
+      "target_prompt_tokens": 128
+    },
+    {
+      "system_id": "vllm_paged",
+      "prompt_tokens": 512,
+      "concurrency": 1,
+      "rep": 0,
+      "ttft_ms": 410.86,
+      "tbt_ms_p50": 35.598,
+      "tbt_ms_mean": 36.325,
+      "kv_bytes": 12976128,
+      "kv_seq_len": 576,
+      "new_tokens": 64,
+      "prompt_id": "syn_512",
+      "target_prompt_tokens": 512
+    },
+    {
+      "system_id": "vllm_paged",
+      "prompt_tokens": 512,
+      "concurrency": 1,
+      "rep": 1,
+      "ttft_ms": 412.21,
+      "tbt_ms_p50": 34.953,
+      "tbt_ms_mean": 35.167,
+      "kv_bytes": 12976128,
+      "kv_seq_len": 576,
+      "new_tokens": 64,
+      "prompt_id": "syn_512",
+      "target_prompt_tokens": 512
+    },
+    {
+      "system_id": "vllm_paged",
+      "prompt_tokens": 512,
+      "concurrency": 1,
+      "rep": 2,
+      "ttft_ms": 431.751,
+      "tbt_ms_p50": 35.888,
+      "tbt_ms_mean": 36.066,
+      "kv_bytes": 12976128,
+      "kv_seq_len": 576,
+      "new_tokens": 64,
+      "prompt_id": "syn_512",
+      "target_prompt_tokens": 512
+    },
+    {
+      "system_id": "vllm_paged",
+      "prompt_tokens": 512,
+      "concurrency": 4,
+      "rep": 0,
+      "ttft_ms": 1458.781,
+      "tbt_ms_p50": 33.157,
+      "tbt_ms_mean": 33.063,
+      "kv_bytes": 12976128,
+      "kv_seq_len": 576,
+      "new_tokens": 64,
+      "ttft_ms_samples": [
+        1459.135,
+        1457.19,
+        1458.427,
+        1462.63
+      ],
+      "tbt_ms_samples": [
+        33.115,
+        33.201,
+        33.214,
+        32.962
+      ],
+      "kv_bytes_samples": [
+        12976128,
+        12976128,
+        12976128,
+        12976128
+      ],
+      "prompt_id": "syn_512",
+      "target_prompt_tokens": 512
+    },
+    {
+      "system_id": "vllm_paged",
+      "prompt_tokens": 512,
+      "concurrency": 4,
+      "rep": 1,
+      "ttft_ms": 1637.197,
+      "tbt_ms_p50": 33.145,
+      "tbt_ms_mean": 32.994,
+      "kv_bytes": 12976128,
+      "kv_seq_len": 576,
+      "new_tokens": 64,
+      "ttft_ms_samples": [
+        1635.795,
+        1637.443,
+        1636.95,
+        1637.966
+      ],
+      "tbt_ms_samples": [
+        33.199,
+        33.011,
+        33.26,
+        33.068
+      ],
+      "kv_bytes_samples": [
+        12976128,
+        12976128,
+        12976128,
+        12976128
+      ],
+      "prompt_id": "syn_512",
+      "target_prompt_tokens": 512
+    },
+    {
+      "system_id": "vllm_paged",
+      "prompt_tokens": 512,
+      "concurrency": 4,
+      "rep": 2,
+      "ttft_ms": 1561.801,
+      "tbt_ms_p50": 31.976,
+      "tbt_ms_mean": 36.293,
+      "kv_bytes": 12976128,
+      "kv_seq_len": 576,
+      "new_tokens": 64,
+      "ttft_ms_samples": [
+        470.544,
+        1564.603,
+        1562.903,
+        1560.7
+      ],
+      "tbt_ms_samples": [
+        31.904,
+        32.066,
+        31.8,
+        32.103
+      ],
+      "kv_bytes_samples": [
+        12976128,
+        12976128,
+        12976128,
+        12976128
+      ],
+      "prompt_id": "syn_512",
+      "target_prompt_tokens": 512
+    },
+    {
+      "system_id": "vllm_paged",
+      "prompt_tokens": 1920,
+      "concurrency": 1,
+      "rep": 0,
+      "ttft_ms": 1385.707,
+      "tbt_ms_p50": 36.392,
+      "tbt_ms_mean": 36.344,
+      "kv_bytes": 44695552,
+      "kv_seq_len": 1984,
+      "new_tokens": 64,
+      "prompt_id": "syn_2048",
+      "target_prompt_tokens": 2048
+    },
+    {
+      "system_id": "vllm_paged",
+      "prompt_tokens": 1920,
+      "concurrency": 1,
+      "rep": 1,
+      "ttft_ms": 1426.481,
+      "tbt_ms_p50": 36.15,
+      "tbt_ms_mean": 36.263,
+      "kv_bytes": 44695552,
+      "kv_seq_len": 1984,
+      "new_tokens": 64,
+      "prompt_id": "syn_2048",
+      "target_prompt_tokens": 2048
+    },
+    {
+      "system_id": "vllm_paged",
+      "prompt_tokens": 1920,
+      "concurrency": 1,
+      "rep": 2,
+      "ttft_ms": 1392.827,
+      "tbt_ms_p50": 36.544,
+      "tbt_ms_mean": 36.282,
+      "kv_bytes": 44695552,
+      "kv_seq_len": 1984,
+      "new_tokens": 64,
+      "prompt_id": "syn_2048",
+      "target_prompt_tokens": 2048
+    },
+    {
+      "system_id": "vllm_paged",
+      "prompt_tokens": 1920,
+      "concurrency": 4,
+      "rep": 0,
+      "ttft_ms": 3453.204,
+      "tbt_ms_p50": 38.93,
+      "tbt_ms_mean": 70.193,
+      "kv_bytes": 44695552,
+      "kv_seq_len": 1984,
+      "new_tokens": 64,
+      "ttft_ms_samples": [
+        2792.426,
+        5422.04,
+        1462.379,
+        4113.983
+      ],
+      "tbt_ms_samples": [
+        38.915,
+        39.059,
+        39.081,
+        38.896
+      ],
+      "kv_bytes_samples": [
+        44695552,
+        44695552,
+        44695552,
+        44695552
+      ],
+      "prompt_id": "syn_2048",
+      "target_prompt_tokens": 2048
+    },
+    {
+      "system_id": "vllm_paged",
+      "prompt_tokens": 1920,
+      "concurrency": 4,
+      "rep": 1,
+      "ttft_ms": 3586.985,
+      "tbt_ms_p50": 37.924,
+      "tbt_ms_mean": 68.72,
+      "kv_bytes": 44695552,
+      "kv_seq_len": 1984,
+      "new_tokens": 64,
+      "ttft_ms_samples": [
+        5546.872,
+        4247.27,
+        2926.699,
+        1594.073
+      ],
+      "tbt_ms_samples": [
+        37.897,
+        38.17,
+        37.918,
+        37.665
+      ],
+      "kv_bytes_samples": [
+        44695552,
+        44695552,
+        44695552,
+        44695552
+      ],
+      "prompt_id": "syn_2048",
+      "target_prompt_tokens": 2048
+    },
+    {
+      "system_id": "vllm_paged",
+      "prompt_tokens": 1920,
+      "concurrency": 4,
+      "rep": 2,
+      "ttft_ms": 3556.519,
+      "tbt_ms_p50": 38.818,
+      "tbt_ms_mean": 69.876,
+      "kv_bytes": 44695552,
+      "kv_seq_len": 1984,
+      "new_tokens": 64,
+      "ttft_ms_samples": [
+        5538.851,
+        2887.688,
+        4225.349,
+        1564.579
+      ],
+      "tbt_ms_samples": [
+        38.445,
+        38.954,
+        38.557,
+        38.877
+      ],
+      "kv_bytes_samples": [
+        44695552,
+        44695552,
+        44695552,
+        44695552
+      ],
+      "prompt_id": "syn_2048",
+      "target_prompt_tokens": 2048
+    }
+  ],
+  "endpoint": "http://127.0.0.1:8000",
+  "served_model": "TinyLlama/TinyLlama-1.1B-Chat-v1.0",
+  "kv_method": "dense per-request FP16 estimate from TinyLlama config"
+}
