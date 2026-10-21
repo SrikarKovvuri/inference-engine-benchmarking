@@ -1,0 +1,45 @@
+# Python
+.venv/
+venv/
+env/
+__pycache__/
+*.py[cod]
+*$py.class
+.Python
+*.egg-info/
+.eggs/
+dist/
+build/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Secrets / local env
+.env
+.env.*
+!.env.example
+
+# OS
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Local model weights (download separately; do not commit)
+*.gguf
+*.bin
+*.safetensors
+models/
+
+# Sweep scratch (committed results live under report/src/data/)
+code/**/*.tmp.json
+*.partial.json
+
+# IDE (optional local settings)
+.idea/
+*.swp
+*.swo
+
+# Node — report/ has its own .gitignore; root guard if npm is run here
+node_modules/
